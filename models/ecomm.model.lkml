@@ -4,7 +4,7 @@ connection: "ecomm"
 include: "/views/**/*.view"
 
 datagroup: ecomm_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "24 hour"
 }
 
@@ -102,6 +102,7 @@ explore: products {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
-}
+  }
 
 explore: users {}
+explore: incremental_pdt {}
