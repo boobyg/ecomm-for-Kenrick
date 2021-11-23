@@ -23,4 +23,8 @@ view: incremental_pdt {
       type: number
     }
     dimension: uri {}
+
+    measure: count {
+      type: count
+    }
   }
