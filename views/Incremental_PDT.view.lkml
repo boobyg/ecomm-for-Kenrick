@@ -27,4 +27,10 @@ view: incremental_pdt {
     measure: count {
       type: count
     }
+    measure: count_2
+    {
+    type: number
+    sql:  ${count} * 1.2 ;;
+
+    }
   }
