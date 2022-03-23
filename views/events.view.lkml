@@ -7,13 +7,15 @@ view: events {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    group_label: "Group IDs"
   }
 
   dimension: ad_event_id {
     type: number
     # hidden: yes
     sql: ${TABLE}.ad_event_id ;;
-  }
+    group_label: "Group IDs"
+    }
 
   dimension: browser {
     type: string

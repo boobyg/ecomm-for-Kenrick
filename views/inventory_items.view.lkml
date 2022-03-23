@@ -88,4 +88,45 @@ view: inventory_items {
     type: count
     drill_fields: [id, product_name, products.name, products.id, order_items.count]
   }
+
+  # Data Actoin for write-back
+  dimension: write_back {
+    type: string
+    sql: ${TABLE}.id ;;
+    action: {
+      label: "Relevant id?"
+      url: "https://us-central1-borisglazmanextensionframework.cloudfunctions.net/looker-write-back"
+      param: {
+        name: "id"
+        value: "{{ value }}"
+      }
+      form_param: {
+        name: "annotation"
+        type: select
+        label: "Relevand id?"
+        default: "No"
+        description: "Do you think that this is a relevant id?"
+        option: {
+        name: "No"
+        }
+        option: {
+          name: "Yes"
+        }
+      }
+    }
+  }
+
+  dimension: write_back_Google_Storage {
+    type: string
+    sql: ${TABLE}.id ;;
+    action: {
+      label: "Relevant id?"
+      url: "https://us-central1-borisglazmanextensionframework.cloudfunctions.net/looker-write-back"
+      param: {
+        name: "id"
+        value: "{{ value }}"
+      }
+    }
+  }
+
 }

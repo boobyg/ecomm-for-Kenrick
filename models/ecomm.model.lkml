@@ -2,13 +2,23 @@ connection: "ecomm"
 
 # include all the views
 include: "/views/**/*.view"
-
+include: "//test_co1/**/*.view"
 datagroup: ecomm_default_datagroup {
   sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "24 hour"
 }
 
 persist_with: ecomm_default_datagroup
+
+map_layer: world_admin_map {
+  file: "//test_co1/WB_countries_Admin0_topojson.json"  # need / before the file name
+  property_key: "NAME_EN"
+}
+
+explore: ga_sessions_20170127 {
+  extends: [ga_sessions_20170127]
+#  extension: required
+}
 
 explore: ad_events {
   join: keywords {
@@ -32,7 +42,13 @@ explore: connection_reg_r3 {}
 
 explore: distribution_centers {}
 
-explore: events {
+explore: events_1{
+  from: events
+   fields: [ -ALL_FIELDS*, ad_event_id,id    ]                             # minus pour cacher les champs                                                                        commençant par ...(etoile)
+}
+
+  explore: events {
+
   join: ad_events {
     type: left_outer
     sql_on: ${events.ad_event_id} = ${ad_events.id} ;;

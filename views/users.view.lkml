@@ -16,11 +16,13 @@ view: users {
 
   dimension: city {
     type: string
+    tags: ["city"]
     sql: ${TABLE}.city ;;
   }
 
   dimension: country {
     type: string
+    tags: ["country"]
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
@@ -41,11 +43,14 @@ view: users {
 
   dimension: email {
     type: string
+    tags: ["email"]
     sql: ${TABLE}.email ;;
   }
 
   dimension: first_name {
+    tags: ["first_name"]
     type: string
+
     sql: ${TABLE}.first_name ;;
   }
 
@@ -56,6 +61,7 @@ view: users {
 
   dimension: last_name {
     type: string
+    tags: ["last_name"]
     sql: ${TABLE}.last_name ;;
   }
 
@@ -71,6 +77,7 @@ view: users {
 
   dimension: state {
     type: string
+    tags: ["state"]
     sql: ${TABLE}.state ;;
   }
 
@@ -81,6 +88,7 @@ view: users {
 
   dimension: zip {
     type: zipcode
+    tags: ["zip"]
     sql: ${TABLE}.zip ;;
   }
 
