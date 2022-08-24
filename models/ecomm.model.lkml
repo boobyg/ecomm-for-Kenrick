@@ -1,4 +1,5 @@
 connection: "ecomm"
+include: "../DataTest.lkml"
 
 # include all the views
 include: "/views/**/*.view"
@@ -33,7 +34,11 @@ explore: ad_groups {
     type: left_outer
     sql_on: ${ad_groups.campaign_id} = ${campaigns.id} ;;
     relationship: many_to_one
-  }
+    view_label: "Combined"
+    }
+    group_label: "Regrouped 2 views into 1"
+    label: "Regrouped 2 views into 1"
+    view_label: "Combined"
 }
 
 explore: campaigns {}
@@ -47,7 +52,12 @@ explore: events_1{
    fields: [ -ALL_FIELDS*, ad_event_id,id    ]                             # minus pour cacher les champs                                                                        commençant par ...(etoile)
 }
 
-  explore: events {
+  explore: events {                                         # user attributes
+       access_filter: {
+        field: users.country
+        user_attribute:country
+      }
+
 
   join: ad_events {
     type: left_outer
@@ -121,4 +131,4 @@ explore: products {
   }
 
 explore: users {}
-explore: incremental_pdt {}
+explore: sql_runner_query {}
