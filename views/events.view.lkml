@@ -3,6 +3,11 @@ view: events {
     ;;
   drill_fields: [id]
 
+  parameter: big_search_filter {   #testing BQ Big Search ... see .mdl
+    suggestable: no
+    type: unquoted
+  }
+
   dimension: id {
     primary_key: yes
     type: number

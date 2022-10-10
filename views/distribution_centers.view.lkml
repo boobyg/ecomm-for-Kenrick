@@ -24,6 +24,12 @@ view: distribution_centers {
     sql: ${TABLE}.name ;;
   }
 
+dimension: geo {
+  type: location
+   sql_latitude:  ${latitude};;
+   sql_longitude: ${longitude};;
+}
+
   measure: count {
     type: count
     drill_fields: [id, name, products.count]

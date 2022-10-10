@@ -21,12 +21,15 @@ persist_with: ecomm_default_datagroup
 #  extension: required
 #}
 
+
+
 explore: ad_events {
   join: keywords {
     type: left_outer
     sql_on: ${ad_events.keyword_id} = ${keywords.keyword_id} ;;
     relationship: many_to_one
   }
+
 }
 
 explore: ad_groups {
@@ -58,6 +61,13 @@ explore: events_1{
         user_attribute:country
       }
 
+    sql_always_where:
+      {% if events.big_search_filter._in_query %}
+      SEARCH(events,"`{% parameter events.big_search_filter %}`")
+      {% else %}
+      1=1
+      {% endif %} ;;
+
 
   join: ad_events {
     type: left_outer
@@ -87,7 +97,7 @@ explore: inventory_items {
 
   join: distribution_centers {
     type: left_outer
-    sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
+    sql_on:   CAST(${products.distribution_center_id} as numeric)      = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
 }
