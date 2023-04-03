@@ -50,6 +50,21 @@ view: products {
     sql: ${TABLE}.sku ;;
   }
 
+  dimension: category_image {
+    type: string
+    sql: ${TABLE}.category;;
+#    html: <img src="https://storage.cloud.google.com/boris_ramp_test_co/{{value}}/Valeo.png" width="100" /> ;;
+#    html: <img src="https://storage.cloud.google.com/boris_ramp_test_co/Looker.png" width="100" /> ;;
+    html:
+    {% if value == 'Jeans' %}
+        <img src="https://storage.cloud.google.com/boris_ramp_test_co/product_category/{{value}}.webp" width="100" />
+    {% else %}
+        <img src="https://storage.cloud.google.com/boris_ramp_test_co/Looker.png" width="100" />
+    {% endif %} ;;
+  }
+
+
+
   measure: count {
     type: count
     drill_fields: [id, name, distribution_centers.name, distribution_centers.id, inventory_items.count]

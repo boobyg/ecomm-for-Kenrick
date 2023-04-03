@@ -99,6 +99,13 @@ view: order_items {
     drill_fields: [detail*]
   }
 
+  dimension_group: shipped_delay {
+    type: duration
+    intervals: [month]
+    sql_start: ${shipped_raw} ;;
+    sql_end: ${created_raw} ;;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

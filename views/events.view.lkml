@@ -3,17 +3,24 @@ view: events {
     ;;
   drill_fields: [id]
 
+  parameter: big_search_filter {   #testing BQ Big Search ... see .mdl
+    suggestable: no
+    type: unquoted
+  }
+
   dimension: id {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    group_label: "Group IDs"
   }
 
   dimension: ad_event_id {
     type: number
     # hidden: yes
     sql: ${TABLE}.ad_event_id ;;
-  }
+    group_label: "Group IDs"
+    }
 
   dimension: browser {
     type: string
@@ -114,5 +121,25 @@ view: events {
   measure: count {
     type: count
     drill_fields: [id, ad_events.id, users.last_name, users.id, users.first_name]
+  }
+
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    type: string
+    allowed_value: { value: "Time" }
+    allowed_value: { value: "Date" }
+    allowed_value: { value: "Week" }
+    allowed_value: { value: "Month" }
+    default_value: "Date"
+  }
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'Time' THEN CAST(${created_time}AS STRING)
+    WHEN {% parameter timeframe_picker %} = 'Date' THEN CAST(${created_date}AS STRING)
+    WHEN {% parameter timeframe_picker %} = 'Week' THEN CAST(${created_week}AS STRING)
+    WHEN {% parameter timeframe_picker %} = 'Month' THEN CAST(${created_month}AS STRING)
+    END ;;
   }
 }
