@@ -9,7 +9,6 @@ view: users {
     sql: ${TABLE}.id ;;
     label: " 🚗 User ID  Group 🚎 "
     description: "This is a grouping of users 🚍"
-
   }
 
   dimension: age {
