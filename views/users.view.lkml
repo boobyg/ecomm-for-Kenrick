@@ -7,6 +7,9 @@ view: users {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    label: " 🚗 User ID  Group 🚎 "
+    description: "This is a grouping of users 🚍"
+
   }
 
   dimension: age {
@@ -28,15 +31,25 @@ view: users {
   dimension_group: created {
     type: time
     timeframes: [
-      raw,
-      time,
+      # raw,
+      # time,
       date,
       week,
-      month,
-      quarter,
-      year
+      day_of_week_index
+      #,
+      # month,
+      # quarter,
+      # year
     ]
-    sql: ${TABLE}.created_at ;;
+    sql:${TABLE}.created_at        ;;
+
+  }
+  dimension: week_day {
+    sql:CASE when "{{ _user_attributes['locale'] }}"  ="en"  THEN
+        if (${created_day_of_week_index} = 1, "Monday","Not Monday")
+             when "{{ _user_attributes['locale'] }}"  ="fr"  THEN
+        if (${created_day_of_week_index} = 1, "Lundi", "pas Lundi")
+    END ;;
   }
 
   dimension: email {
@@ -59,15 +72,11 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
 
-  dimension: latitude {
-    type: number
-    sql: ${TABLE}.latitude ;;
-  }
-
-  dimension: longitude {
-    type: number
-    sql: ${TABLE}.longitude ;;
-  }
+  dimension: location {
+    type: location
+     sql_latitude: ${TABLE}.latitude ;;
+     sql_longitude: ${TABLE}.longitude ;;
+    }
 
   dimension: state {
     type: string

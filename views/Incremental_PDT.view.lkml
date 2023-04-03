@@ -13,6 +13,7 @@ view: incremental_pdt {
         column: user_id {}
         column: uri {}
       }
+#      persist_for: "24 hours"
     }
     dimension: created_date {
       type: date
