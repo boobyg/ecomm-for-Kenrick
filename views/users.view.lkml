@@ -2,6 +2,7 @@ view: users {
   sql_table_name: `ecomm.users`
     ;;
   drill_fields: [id]
+#  extension: required
 
   dimension: id {
     primary_key: yes

@@ -5,7 +5,7 @@ view: incremental_pdt {
 #      indexes: ["user_id"]
       increment_key: "created_date"
       increment_offset: 3
-      datagroup_trigger: ecomm_default_datagroup
+#      datagroup_trigger: ecomm_default_datagroup
        explore_source: events {
         column: created_date {}
         column: referrer_code {}

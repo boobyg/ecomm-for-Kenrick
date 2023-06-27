@@ -5,7 +5,7 @@ include: "../DataTest.lkml"
 include: "/views/**/*.view"
 #include: "//test_co1/**/*.view"
 datagroup: ecomm_default_datagroup {
-  sql_trigger: SELECT MAX(id) FROM etl_log;;
+#  sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "24 hour"
 }
 
@@ -139,8 +139,10 @@ explore: products {
     relationship: many_to_one
   }
   }
-
-
-
 explore: users {}
+
+
+explore: users_extended_1 {
+  from: users_extended
+}
 explore: sql_runner_query {}

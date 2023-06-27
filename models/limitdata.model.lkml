@@ -4,7 +4,7 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 
 
 datagroup: ecomm_default_datagroup {
-  sql_trigger: SELECT MAX(id) FROM etl_log;;
+#  sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "24 hour"
 }
 
