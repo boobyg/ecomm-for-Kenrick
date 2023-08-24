@@ -8,6 +8,14 @@ view: events {
     type: unquoted
   }
 
+  filter: test_cascade {
+ #   suggest_dimension: country
+ #   suggestions: ["France", "USA"]
+    suggest_explore: ad_events
+    suggest_dimension: ad_events.event_type
+
+  }
+
   dimension: id {
     primary_key: yes
     type: number

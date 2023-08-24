@@ -21,7 +21,33 @@ view: users {
     type: string
     tags: ["city"]
     sql: ${TABLE}.city ;;
-  }
+    suggestable: no
+#    full_suggestions: no  #Carrefour LS connector perf
+
+    }
+
+
+# #### test parameters Carrefour LS connector perf ##############
+
+#     parameter: cities {
+#     type: string
+#     allowed_value: {
+#       label: "New York"
+#       value: "New York"
+#     }
+#     allowed_value: {
+#       label: "Los Angeles"
+#       value: "Los Angeles"
+#     }
+#   }
+
+
+#   dimension: city2 {
+#     type: string
+#     sql:       {% parameter cities %} ;;
+#   }
+# ##################### end test parrameteres #########################
+
 
   dimension: country {
     type: string
@@ -99,6 +125,15 @@ view: users {
     type: zipcode
     tags: ["zip"]
     sql: ${TABLE}.zip ;;
+  }
+  dimension: code_langue {
+    type: string
+    sql: "en" ;;
+  }
+
+  dimension: store_type{
+    type: string
+    sql: "Hyper" ;;
   }
 
   measure: count {

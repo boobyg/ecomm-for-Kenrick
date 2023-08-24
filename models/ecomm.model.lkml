@@ -1,4 +1,4 @@
-connection: "ecomm"
+connection: "ecomm_borisglazmanextensionframework"
 include: "../DataTest.lkml"
 
 # include all the views
@@ -6,7 +6,9 @@ include: "/views/**/*.view"
 #include: "//test_co1/**/*.view"
 datagroup: ecomm_default_datagroup {
 #  sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "24 hour"
+#  max_cache_age: "24 hour"
+max_cache_age: "999999 hours"  #do not change will rebuild PDTs and generate errors
+sql_trigger: FALSE ;; #do not change will rebuild PDTs and generate errors
 }
 
 persist_with: ecomm_default_datagroup
@@ -139,7 +141,11 @@ explore: products {
     relationship: many_to_one
   }
   }
-explore: users {}
+
+
+explore: users {
+#  sql_always_where: ${created_date} >= '2000-01-01' ;;
+}
 
 
 explore: users_extended_1 {
