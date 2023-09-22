@@ -14,6 +14,7 @@ view: users {
 
   dimension: age {
     type: number
+    label: "Age of the User"
     sql: ${TABLE}.age ;;
   }
 
@@ -103,6 +104,11 @@ view: users {
     tags: ["last_name"]
     sql: ${TABLE}.last_name ;;
   }
+
+dimension:full_name {
+  type: string
+  sql: CONCAT(${first_name}, ${last_name}) ;;
+}
 
   dimension: location {
     type: location

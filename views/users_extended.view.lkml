@@ -5,7 +5,7 @@ view: users_extended {
   extends: [users]
 
 dimension: id_extended {
-  primary_key: yes
+#  primary_key: yes
   type: number
   sql: ${TABLE}.id ;;
   label: " 🚗 User ID  Group Extended🚎 "
