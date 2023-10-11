@@ -63,7 +63,10 @@ view: products {
     {% endif %} ;;
   }
 
-
+  dimension: null_value {
+#    type: count_distinct
+    sql: null ;;
+  }
 
   measure: count {
     type: count
