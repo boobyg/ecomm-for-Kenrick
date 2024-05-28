@@ -108,9 +108,11 @@ view: inventory_items {
         description: "Do you think that this is a relevant id?"
         option: {
         name: "No"
+        label: "No"
         }
         option: {
           name: "Yes"
+          label: "Yes"
         }
       }
     }

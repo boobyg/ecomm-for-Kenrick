@@ -122,6 +122,23 @@ dimension:full_name {
     sql: ${TABLE}.state ;;
   }
 
+  dimension: state_flag_image {
+    type: string
+    sql: ${state} ;;
+    html:
+              {% if state._value == "California" %}
+              <img src="https://storage.cloud.google.com/flags_looker-demo-347209/Flag_of_California.svg" height="170" width="355">
+              {% elsif state._value == "New York" %}
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_New_York.svg/1200px-Flag_of_New_York.svg.png" height="170" width="255">
+              {% elsif state._value == "Colorado" %}
+              <img src="https://storage.cloud.google.com/flags_looker-demo-347209/Flag_of_Colorado.svg.png" height="170" width="255">
+              {% elsif state._value == "Illinois"%}
+              <img src="https://storage.cloud.google.com/flags_looker-demo-347209/Flag_of_Illinois.svg.png" height="170" width="255">
+              {% else %}
+              <img src="https://storage.cloud.google.com/flags_looker-demo-347209/No_image_available.svg.png" height="170" width="170">
+              {% endif %} ;;
+  }
+
   dimension: traffic_source {
     type: string
     sql: ${TABLE}.traffic_source ;;

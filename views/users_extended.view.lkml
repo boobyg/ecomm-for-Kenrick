@@ -15,4 +15,20 @@ dimension: id_extended {
 measure: count_extended {
   type: count
 }
+
+parameter: big_search_filter {   #testing BQ Big Search ... see .mdl
+    suggestable: no
+    type: unquoted
+  }
+
+measure: count_liquid {
+  type: number
+  sql:
+   {% if big_search_filter._in_query %}
+     {% parameter big_search_filter %}
+  {% else %}
+      00
+  {% endif %} ;;
+}
+
 }

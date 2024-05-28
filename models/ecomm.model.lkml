@@ -1,6 +1,7 @@
 connection: "ecomm_borisglazmanextensionframework"
 include: "../DataTest.lkml"
 
+
 # include all the views
 include: "/views/**/*.view"
 #include: "//test_co1/**/*.view"
@@ -152,3 +153,7 @@ explore: users_extended_1 {
   from: users_extended
 }
 explore: sql_runner_query {}
+
+explore: ad_groups_1 {
+  from: ad_groups
+}

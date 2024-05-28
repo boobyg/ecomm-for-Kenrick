@@ -99,6 +99,11 @@ view: order_items {
     drill_fields: [detail*]
   }
 
+  measure:  will_buy_again{
+  type: yesno
+  sql: CASE WHEN ${count} > 10 THEN TRUE ELSE FALSE END;;
+  }
+
   dimension_group: shipped_delay {
     type: duration
     intervals: [month]
